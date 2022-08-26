@@ -80,6 +80,7 @@ class HistoricalReader(Stock):
                 [result.index.levels[0], pd.to_datetime(result.index.levels[1])]
             )
             idx = pd.IndexSlice
+            result.sort_index(inplace=True)
             result = result.loc[idx[:, self.start : self.end], :]
         else:
             out = {entr["date"]: entr for entr in out[self.symbols[0]]["chart"]}
